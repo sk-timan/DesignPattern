@@ -5,17 +5,17 @@ void IObserver::update(float temp, float humidity, float pressure)
 {
 }
 
-WeatherDate::WeatherDate()
+WeatherData::WeatherData()
 {
 	//observers.push_back(new IObserver());
 }
 
-void WeatherDate::registerObserver(IObserver* observer)
+void WeatherData::registerObserver(IObserver* observer)
 {
 	observers.push_back(observer);
 }
 
-void WeatherDate::removeObserver(IObserver* observer)
+void WeatherData::removeObserver(IObserver* observer)
 {
 	vector<IObserver*>::iterator iter = find(observers.begin(), observers.end(), observer);
 	if (iter == observers.end())
@@ -28,7 +28,7 @@ void WeatherDate::removeObserver(IObserver* observer)
 	}
 }
 
-void WeatherDate::notifyObserver()
+void WeatherData::notifyObserver()
 {
 	for (int i = 0; i < observers.size(); i++)
 	{
@@ -37,12 +37,12 @@ void WeatherDate::notifyObserver()
 	}
 }
 
-void WeatherDate::measurementsChanged()
+void WeatherData::measurementsChanged()
 {
 	notifyObserver();
 }
 
-void WeatherDate::setMeasurements(float temperature, float humidity, float pressure)
+void WeatherData::setMeasurements(float temperature, float humidity, float pressure)
 {
 	this->temperature = temperature;
 	this->humidity = humidity;
@@ -66,6 +66,5 @@ void CurrentConditionsDisplay::update(float temperature, float humidity, float p
 
 void CurrentConditionsDisplay::display()
 {
-	cout << "Current conditions: " << temperature << " F degrees and " << "s% humidity"
-		<< humidity;
+	cout << "Current conditions: " << temperature << " F degrees and " << humidity << " humidity" << endl;
 }

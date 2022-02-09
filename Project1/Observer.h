@@ -27,10 +27,10 @@ public:
 
 };
 
-class WeatherDate : public ISubject
+class WeatherData : public ISubject
 {
 public:
-	WeatherDate();
+	WeatherData();
 
 	virtual void registerObserver(IObserver* observer) override;
 	virtual void removeObserver(IObserver* observer) override;
@@ -60,4 +60,19 @@ private:
 	float humidity = 0;
 	ISubject* weatherData;
 
+};
+
+class Observer
+{
+public:
+	static void ObserverTest()
+	{
+		WeatherData* weatherData = new WeatherData();
+		CurrentConditionsDisplay* currentDisplay = new CurrentConditionsDisplay(weatherData);
+		weatherData->setMeasurements(80, 65, 30.4f);
+		weatherData->setMeasurements(82, 70, 29.2f);
+		weatherData->setMeasurements(78, 90, 29.2f);
+		
+		delete weatherData, currentDisplay;
+	}
 };

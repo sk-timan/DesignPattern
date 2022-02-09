@@ -84,3 +84,25 @@ public:
 	ModelDuck();
 	virtual void Display() override;
 };
+
+class StrategyPattern
+{
+public:
+	static void StrategyPatternDisplay()
+	{
+		Duck* mallard = new MallardDuck();
+		mallard->performQuack();
+		mallard->performFly();
+		mallard->Display();
+
+		delete mallard;
+
+		mallard = new ModelDuck();
+		mallard->performFly();
+		IFlyRocketPowered* flyPowered = new IFlyRocketPowered();
+		mallard->setFlyBehavior(flyPowered);
+		mallard->performFly();
+
+		delete mallard;
+	}
+};
