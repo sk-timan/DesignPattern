@@ -19,6 +19,9 @@
     <Filter Include="头文件\观察者模式">
       <UniqueIdentifier>{4d774c95-4ea8-4daf-8acf-74713c5f6899}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\工厂模式">
+      <UniqueIdentifier>{59d23489-69dd-44cc-9318-c80d6ca2fa84}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StrategyPattern.h">
@@ -26,6 +29,9 @@
     </ClInclude>
     <ClInclude Include="Observer.h">
       <Filter>头文件\观察者模式</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleFactory.h">
+      <Filter>头文件\工厂模式</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -36,6 +42,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Observer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleFactory.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

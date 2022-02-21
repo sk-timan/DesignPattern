@@ -141,11 +141,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Observer.h" />
+    <ClInclude Include="SimpleFactory.h" />
     <ClInclude Include="StrategyPattern.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Observer.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SimpleFactory.cpp" />
     <ClCompile Include="StrategyPattern.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
