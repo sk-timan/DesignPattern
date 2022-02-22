@@ -43,7 +43,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -140,10 +140,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Decorator.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="StrategyPattern.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Decorator.cpp" />
     <ClCompile Include="Observer.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="StrategyPattern.cpp" />
