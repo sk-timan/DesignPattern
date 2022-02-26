@@ -22,7 +22,7 @@ void WeatherData::removeObserver(IObserver* observer)
 		return;
 	else
 	{
-		int index = distance(observers.begin(), iter);
+		__int64 index = distance(observers.begin(), iter);
 		if (index >= 0)
 			observers.erase(iter);
 	}
