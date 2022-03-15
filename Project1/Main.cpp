@@ -9,7 +9,5 @@ int main()
 	StrategyPattern::StrategyPatternDisplay();
 	Observer::ObserverTest();
 	DecoratorPattern::DecoratorPatternDisplay();
-	//StrategyPattern::StrategyPatternDisplay();
-	//Observer::ObserverTest();
 	SimpleFactory::SimpleFactoryDisplay();
 }

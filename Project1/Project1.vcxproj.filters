@@ -1,16 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Decorator.cpp" />
-    <ClCompile Include="Observer.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="SimpleFactory.cpp" />
-    <ClCompile Include="StrategyPattern.cpp" />
+    <ClCompile Include="Decorator.cpp">
+      <Filter>项目文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Observer.cpp">
+      <Filter>项目文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleFactory.cpp">
+      <Filter>项目文件</Filter>
+    </ClCompile>
+    <ClCompile Include="StrategyPattern.cpp">
+      <Filter>项目文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Decorator.h" />
-    <ClInclude Include="Observer.h" />
-    <ClInclude Include="SimpleFactory.h" />
-    <ClInclude Include="StrategyPattern.h" />
+    <ClInclude Include="StrategyPattern.h">
+      <Filter>头文件\策略模式</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>头文件\观察者模式</Filter>
+    </ClInclude>
+    <ClInclude Include="Decorator.h">
+      <Filter>头文件\装饰器模式</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleFactory.h">
+      <Filter>头文件\工厂模式</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{add417a5-eb19-4185-b119-09321d9a715d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\策略模式">
+      <UniqueIdentifier>{c55fcb53-4786-4793-a4c5-c72ac7047369}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\观察者模式">
+      <UniqueIdentifier>{4554f650-1b0f-403f-b874-cff24ea455b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\装饰器模式">
+      <UniqueIdentifier>{b50d2b7f-4b7a-4f08-9638-0b8971407ca8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\工厂模式">
+      <UniqueIdentifier>{b5455c93-83bf-4a7a-b246-fe27adef20ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="项目文件">
+      <UniqueIdentifier>{655b3539-e507-40d9-acb6-f819c9ab52c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
