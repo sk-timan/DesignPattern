@@ -20,11 +20,13 @@ class IPizza
 public:
 	IPizza();
 
-	void prepare();
-	void bake();
-	void cut();
-	void box();
-	void eat();
+	virtual void prepare();
+	virtual void bake();
+	virtual void cut();
+	virtual void box();
+	virtual void eat();
+
+public:
 	string getName();
 
 public:

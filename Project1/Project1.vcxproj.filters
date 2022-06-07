@@ -14,6 +14,15 @@
     <ClCompile Include="StrategyPattern.cpp">
       <Filter>项目文件</Filter>
     </ClCompile>
+    <ClCompile Include="Factory.cpp">
+      <Filter>项目文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractFactory.cpp">
+      <Filter>项目文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Singleton.cpp">
+      <Filter>项目文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StrategyPattern.h">
@@ -27,6 +36,15 @@
     </ClInclude>
     <ClInclude Include="SimpleFactory.h">
       <Filter>头文件\工厂模式</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory.h">
+      <Filter>头文件\工厂模式</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractFactory.h">
+      <Filter>头文件\工厂模式</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>头文件\单件模式</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -47,6 +65,9 @@
     </Filter>
     <Filter Include="项目文件">
       <UniqueIdentifier>{655b3539-e507-40d9-acb6-f819c9ab52c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\单件模式">
+      <UniqueIdentifier>{e20d6acc-c40f-4902-876c-210a3cfb0811}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

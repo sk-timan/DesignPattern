@@ -44,12 +44,14 @@ IPizza::IPizza()
 void IPizza::prepare()
 {
 	cout << "Preparing " + Name << endl;
-	cout << "Tossing dough..." << endl;
-	cout << "Adding sauce..." << endl;
-	/*cout << "Adding toppings: " << endl;
-	for (int i = 0; i < toppings.size(); i++)
-		cout << "   " + toppings[i];*/
-
+	cout << "Tossing dough..." + dough << endl;
+	cout << "Adding sauce..." + sauce << endl;
+	if (toppings.size() > 0)
+	{
+		cout << "Adding toppings:";
+		for (int i = 0; i < toppings.size(); i++)
+			cout << " " + toppings[i];
+	}
 }
 
 void IPizza::bake()
