@@ -1,7 +1,25 @@
 #pragma once
 #include <windows.h>
+#include <tchar.h>
+#include <strsafe.h>
 
-CRITICAL_SECTION SingletonScopeLock;
+#define MAX_THREADS 3
+#define BUF_SIZE 255
+
+DWORD WINAPI MyThreadFunction(PVOID lpParam);
+void ErrorHandler(const LPWSTR lpszFunction);
+
+// Sample custom data structure for threads to use.
+// This is passed by void pointer so it can be any data type
+// that can be passed using a single void pointer (LPVOID).
+typedef struct MyData
+{
+	int val1;
+	int val2;
+}MYDATA, *PMYDATA;
+
+// 创建线程实例
+void ZTYThreadFuncTest();
 
 class Singleton
 {
@@ -11,6 +29,12 @@ private:
 
 public:
 	  static volatile Singleton* getInstance();
+
+	  static void SingletonMultithreadFunc();
+
+	  int count = 0;
+
+	  static DWORD SingletonThreadWork(LPVOID lpParm);
 
 private:
 	/**
@@ -28,6 +52,3 @@ private:
 	//volatile 的意思是让编译器每次操作该变量时一定要从内存中真正取出，而不是使用已经存在寄存器中的值
 	volatile static Singleton* uniqueInstance;
 };
-
-//Singleton* Singleton::uniqueInstance = new Singleton();
-volatile Singleton* Singleton::uniqueInstance = nullptr;

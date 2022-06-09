@@ -5,6 +5,7 @@
 #include "SimpleFactory.h"
 #include "Factory.h"
 #include "AbstractFactory.h"
+#include "Singleton.h"
 #include <algorithm>
 
 namespace MoveAndForward
@@ -249,7 +250,8 @@ int main()
 	//SharedPointerTest::SharedPointerTestSong();
 	//SharedPointerTest::SharedPointerTestPhoto();
 	//WeakPointerTest::WeakPointerTestFun();
-	PassByRefTest::PassByRefTestFun();
-
+	//PassByRefTest::PassByRefTestFun();
+	//ZTYThreadFuncTest();
+	Singleton::SingletonMultithreadFunc();
 }
 	
