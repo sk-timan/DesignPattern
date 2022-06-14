@@ -6,6 +6,7 @@
 #include "Factory.h"
 #include "AbstractFactory.h"
 #include "Singleton.h"
+#include "MethodInvocation.h"
 #include <algorithm>
 
 namespace MoveAndForward
@@ -252,6 +253,7 @@ int main()
 	//WeakPointerTest::WeakPointerTestFun();
 	//PassByRefTest::PassByRefTestFun();
 	//ZTYThreadFuncTest();
-	Singleton::SingletonMultithreadFunc();
+	//Singleton::SingletonMultithreadFunc();
+	MethodInvocation::RemoteControlTestFunc();
 }
 	

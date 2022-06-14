@@ -23,6 +23,9 @@
     <ClCompile Include="Singleton.cpp">
       <Filter>项目文件</Filter>
     </ClCompile>
+    <ClCompile Include="MethodInvocation.cpp">
+      <Filter>项目文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StrategyPattern.h">
@@ -46,6 +49,9 @@
     <ClInclude Include="Singleton.h">
       <Filter>头文件\单件模式</Filter>
     </ClInclude>
+    <ClInclude Include="MethodInvocation.h">
+      <Filter>头文件\命令模式</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="头文件">
@@ -68,6 +74,9 @@
     </Filter>
     <Filter Include="头文件\单件模式">
       <UniqueIdentifier>{e20d6acc-c40f-4902-876c-210a3cfb0811}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\命令模式">
+      <UniqueIdentifier>{e19e8137-1a8b-4824-9031-37d48c950f87}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

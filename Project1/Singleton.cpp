@@ -125,7 +125,7 @@ DWORD WINAPI MyThreadFunction(LPVOID lpParam)
 	StringCchPrintf(msgBuf, BUF_SIZE, TEXT("Parameters = %d, %d\n"),
 		pDataArray->val1, pDataArray->val2);
 	StringCchLength(msgBuf, BUF_SIZE, &cchStringSize);
-	WriteConsole(hStdout, msgBuf, (DWORD)cchStringSize, &dwChars, NULL);
+	WriteConsole(hStdout, msgBuf, (DWORD)cchStringSize, &dwChars, NULL); 
 
 	return 0;
 }

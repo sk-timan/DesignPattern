@@ -143,6 +143,7 @@
     <ClInclude Include="AbstractFactory.h" />
     <ClInclude Include="Decorator.h" />
     <ClInclude Include="Factory.h" />
+    <ClInclude Include="MethodInvocation.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="SimpleFactory.h" />
     <ClInclude Include="Singleton.h" />
@@ -152,6 +153,7 @@
     <ClCompile Include="AbstractFactory.cpp" />
     <ClCompile Include="Decorator.cpp" />
     <ClCompile Include="Factory.cpp" />
+    <ClCompile Include="MethodInvocation.cpp" />
     <ClCompile Include="Observer.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="SimpleFactory.cpp" />
