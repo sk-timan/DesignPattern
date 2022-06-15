@@ -1,7 +1,9 @@
 #pragma once
 #include <vector>
+#include <string>
 
 #define NUM_COMMANDS 7
+
 class Light
 {
 public:
@@ -23,6 +25,8 @@ public:
 	void On();
 	void setCD();
 	void setVolume(int val);
+	void Off();
+
 private:
 	std::string Installplace;
 };
@@ -51,11 +55,12 @@ private:
 	std::string Installplace;
 };
 
-
 class Command
 {
 public:
-	virtual void execute(){};
+
+	virtual void execute() {};
+	virtual void undo() {};
 
 	std::string getName() { return Name; };
 
@@ -66,6 +71,8 @@ protected:
 class NoCommand : public Command
 {
 public:
+	NoCommand();
+
 	virtual void execute()override;
 };
 
@@ -75,6 +82,7 @@ public:
 	LightOnCommand(Light* light);
 
 	virtual void execute() override;
+	virtual void undo() override;
 
 private:
 	Light* light;
@@ -87,6 +95,7 @@ public:
 
 public:
 	virtual void execute()override;
+	virtual void undo() override;
 
 private:
 	Light* light;
@@ -114,6 +123,50 @@ private:
 	CeilingFan* ceilingFan;
 };
 
+class GarageDoorUpCommand : public Command
+{
+public:
+	GarageDoorUpCommand(GarageDoor* garageDoor);
+
+	virtual void execute() override;
+
+private:
+	GarageDoor* garageDoor;
+};
+
+class GarageDoorDownCommand : public Command
+{
+public:
+	GarageDoorDownCommand(GarageDoor* garageDoor);
+
+	virtual void execute() override;
+
+private:
+	GarageDoor* garageDoor;
+};
+
+class StereoOnWithCDCommand : public Command
+{
+public:
+	StereoOnWithCDCommand(Stereo* stereo);
+
+	virtual void execute() override;
+
+private:
+	Stereo* stereo;
+};
+
+class StereoOffCommand : public Command
+{
+public:
+	StereoOffCommand(Stereo* stereo);
+
+	virtual void execute() override;
+
+private:
+	Stereo* stereo;
+};
+
 class SimpleRemoteControl
 {
 public:
@@ -138,11 +191,28 @@ public:
 
 	void OffButtonWasPushed(int slot);
 
-	std::string toString();
+	std::string ToString();
 
-private:
+protected:
 	std::vector<Command*> onCommands;
 	std::vector<Command*> offCommands;
+};
+
+class RemoteControlWithUndo : public RemoteControl
+{
+public:
+	RemoteControlWithUndo();
+
+	void OnButtonWasPushed(int slot);
+
+	void OffButtonWasPushed(int slot);
+
+	void undoButtonWasPushed();
+
+	std::string ToString();
+
+private:
+	Command* undoCommand;
 };
 
 class MethodInvocation

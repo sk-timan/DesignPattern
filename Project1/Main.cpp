@@ -254,6 +254,7 @@ int main()
 	//PassByRefTest::PassByRefTestFun();
 	//ZTYThreadFuncTest();
 	//Singleton::SingletonMultithreadFunc();
-	MethodInvocation::RemoteControlTestFunc();
+	//MethodInvocation::RemoteControlTestFunc();
+	MethodInvocation::RemoteLoaderTestFunc();
 }
 	
