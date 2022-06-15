@@ -94,6 +94,32 @@ void MethodInvocation::RemoteLoaderTestFunc()
 	std::cout << remoteControl->ToString();
 	remoteControl->undoButtonWasPushed();
 
+	CeilingFanMediumCommand* ceilingFanMedium = new CeilingFanMediumCommand(ceilingFan);
+	CeilingFanHighCommand* ceilingFanHigh = new CeilingFanHighCommand(ceilingFan);
+
+	remoteControl->setCommand(0, ceilingFanMedium, ceilingFanOff);
+	remoteControl->setCommand(1, ceilingFanHigh, ceilingFanOff);
+
+	remoteControl->OnButtonWasPushed(0);
+	remoteControl->OffButtonWasPushed(0);
+	std::cout << remoteControl->ToString();
+	remoteControl->undoButtonWasPushed();
+
+	remoteControl->OnButtonWasPushed(1);
+	std::cout << remoteControl->ToString();
+	remoteControl->undoButtonWasPushed();
+
+	std::cout << "-----------------------------------\n";
+	TV* tv = new TV("Living Room");
+	Hottub* hottub = new Hottub();
+	TVOnCommand* tvOn = new TVOnCommand(tv);
+	HottubOnCommand* hottubOn = new HottubOnCommand(hottub);
+	Command* partyOn[4] = { livingRoomLightOn,stereoOnWithCD,tvOn,hottubOn };
+
+	
+	MacroCommand* partyOnMacro = new MacroCommand(*partyOn, , 4);
+
+
 }
 
 Light::Light(std::string installplace)
@@ -205,9 +231,15 @@ void Stereo::Off()
 	std::cout << Installplace + " Stereo is Off.\n";
 }
 
+int CeilingFan::HIGH = 3;
+int CeilingFan::MEDIUM = 2;
+int CeilingFan::LOW = 1;
+int CeilingFan::OFF = 0;
+
 CeilingFan::CeilingFan(std::string installplace)
 {
 	Installplace = installplace;
+	speed = OFF;
 }
 
 void CeilingFan::On()
@@ -217,7 +249,31 @@ void CeilingFan::On()
 
 void CeilingFan::Off()
 {
+	speed = OFF;
 	std::cout << Installplace + " CeilingFan off.\n";
+}
+
+void CeilingFan::high()
+{
+	speed = HIGH;
+	std::cout << Installplace + " CeilingFan is on High.\n";
+}
+
+void CeilingFan::medium()
+{
+	speed = MEDIUM;
+	std::cout << Installplace + " CeilingFan is on Medium.\n";
+}
+
+void CeilingFan::low()
+{
+	speed = LOW;
+	std::cout << Installplace + " CeilingFan is on Low.\n";
+}
+
+int CeilingFan::getSpeed()
+{
+	return speed;
 }
 
 GarageDoor::GarageDoor(std::string installplace)
@@ -254,7 +310,71 @@ CeilingFanOffCommand::CeilingFanOffCommand(CeilingFan* ceilingFan)
 
 void CeilingFanOffCommand::execute()
 {
+	prevSpeed = ceilingFan->getSpeed();
 	ceilingFan->Off();
+}
+
+void CeilingFanOffCommand::undo()
+{
+	if (prevSpeed == CeilingFan::HIGH)
+		ceilingFan->high();
+	else if (prevSpeed == CeilingFan::MEDIUM)
+		ceilingFan->medium();
+	else if (prevSpeed == CeilingFan::LOW)
+		ceilingFan->low();
+	else if (prevSpeed == CeilingFan::OFF)
+		ceilingFan->Off();
+
+}
+
+CeilingFanHighCommand::CeilingFanHighCommand(CeilingFan* ceilingFan)
+{
+	Name = "CeilingFan High";
+	this->ceilingFan = ceilingFan;
+}
+
+void CeilingFanHighCommand::execute()
+{
+	prevSpeed = ceilingFan->getSpeed();
+	ceilingFan->high();
+}
+
+void CeilingFanHighCommand::undo()
+{
+	if (prevSpeed == CeilingFan::HIGH)
+		ceilingFan->high();
+	else if (prevSpeed == CeilingFan::MEDIUM)
+		ceilingFan->medium();
+	else if (prevSpeed == CeilingFan::LOW)
+		ceilingFan->low();
+	else if (prevSpeed == CeilingFan::OFF)
+		ceilingFan->Off();
+
+}
+
+CeilingFanMediumCommand::CeilingFanMediumCommand(CeilingFan* ceilingFan)
+{
+	Name = "CeilingFan Medium";
+	this->ceilingFan = ceilingFan;
+}
+
+void CeilingFanMediumCommand::execute()
+{
+	prevSpeed = ceilingFan->getSpeed();
+	ceilingFan->medium();
+}
+
+void CeilingFanMediumCommand::undo()
+{
+	if (prevSpeed == CeilingFan::HIGH)
+		ceilingFan->high();
+	else if (prevSpeed == CeilingFan::MEDIUM)
+		ceilingFan->medium();
+	else if (prevSpeed == CeilingFan::LOW)
+		ceilingFan->low();
+	else if (prevSpeed == CeilingFan::OFF)
+		ceilingFan->Off();
+
 }
 
 GarageDoorUpCommand::GarageDoorUpCommand(GarageDoor* garageDoor)
@@ -336,4 +456,92 @@ std::string RemoteControlWithUndo::ToString()
 		stringBuff->append("[undo] " + undoCommand->getName() + "\n");
 
 	return stringBuff->data();
+}
+
+void MacroCommand::execute()
+{
+	for (int i = 0; i < commands.size(); i++)
+		commands[i]->execute();
+}
+
+MacroCommand::MacroCommand(Command* commandsStart, Command* commandsEnd, int num)
+{
+	this->commands.resize(num);
+	this->commands.begin();
+	//memcpy(commands, this->commands[0], num * sizeof(Command));
+	//this->commands.assign(commandsStart, commandsEnd);
+}
+
+TV::TV(std::string Installplace)
+{
+	this->Installplace = Installplace;
+}
+
+void TV::On()
+{
+	std::cout << Installplace + " TV is On.\n";
+}
+
+void TV::Off()
+{
+	std::cout << Installplace + " TV is Off.\n";
+}
+
+void TV::setInputChannel(int Cha)
+{
+}
+
+void TV::setVolume(int val)
+{
+	std::cout << Installplace + " TV set Volume : " + std::to_string(val) + "\n";
+}
+
+Hottub::Hottub()
+{
+}
+
+void Hottub::On()
+{
+	std::cout << "Hottub is On.\n";
+}
+
+void Hottub::Off()
+{
+	std::cout << "Hottub is Off.\n";
+}
+
+void Hottub::Circulate()
+{
+}
+
+void Hottub::jetsOn()
+{
+}
+
+void Hottub::jetsOff()
+{
+}
+
+void Hottub::setTemperature(int temp)
+{
+}
+
+TVOnCommand::TVOnCommand(TV* tv)
+{
+	this->tv = tv;
+}
+
+void TVOnCommand::execute()
+{
+	tv->On();
+}
+
+HottubOnCommand::HottubOnCommand(Hottub* hottub)
+{
+	this->hottub = hottub;
+}
+
+void HottubOnCommand::execute()
+{
+	hottub->On();
 }

@@ -39,6 +39,19 @@ public:
 public:
 	void On();
 	void Off();
+	void high();
+	void medium();
+	void low();
+	int getSpeed();
+
+public:
+	static int HIGH;
+	static int MEDIUM;
+	static int LOW;
+	static int OFF;
+
+	int speed;
+
 private:
 	std::string Installplace;
 };
@@ -53,6 +66,36 @@ public:
 	void Down();
 private:
 	std::string Installplace;
+};
+
+class TV
+{
+public:
+	TV(std::string Installplace);
+
+public:
+	void On();
+	void setVolume(int val);
+	void setInputChannel(int Channel);
+	void Off();
+
+private:
+	std::string Installplace;
+};
+
+class Hottub
+{
+public:
+	Hottub();
+
+public:
+	void On();
+	void Off();
+	void Circulate();
+	void jetsOn();
+	void jetsOff();
+	void setTemperature(int Temp);
+
 };
 
 class Command
@@ -118,9 +161,40 @@ public:
 	CeilingFanOffCommand(CeilingFan* ceilingFan);
 
 	virtual void execute() override;
+	virtual void undo() override;
 
 private:
 	CeilingFan* ceilingFan;
+	int prevSpeed;
+};
+
+class CeilingFanHighCommand : public Command
+{
+public:
+	CeilingFanHighCommand(CeilingFan* ceilingFan);
+
+	virtual void execute() override;
+
+	virtual void undo() override;
+
+private:
+	CeilingFan* ceilingFan;
+	int prevSpeed;
+
+};
+
+class CeilingFanMediumCommand : public Command
+{
+public:
+	CeilingFanMediumCommand(CeilingFan* ceilingFan);
+
+	virtual void execute() override;
+
+	virtual void undo() override;
+
+private:
+	CeilingFan* ceilingFan;
+	int prevSpeed;
 };
 
 class GarageDoorUpCommand : public Command
@@ -165,6 +239,38 @@ public:
 
 private:
 	Stereo* stereo;
+};
+
+class MacroCommand : public Command
+{
+public:
+	MacroCommand(Command* commandsStart, Command* commandsEnd, int num);
+
+	virtual void execute() override;
+private:
+	std::vector<Command*> commands;
+};
+
+class TVOnCommand : public Command
+{
+public:
+	TVOnCommand(TV* tv);
+
+	virtual void execute() override;
+
+private:
+	TV* tv;
+};
+
+class HottubOnCommand : public Command
+{
+public:
+	HottubOnCommand(Hottub* hottub);
+
+	virtual void execute() override;
+
+private:
+	Hottub* hottub;
 };
 
 class SimpleRemoteControl
