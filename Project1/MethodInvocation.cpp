@@ -1,6 +1,5 @@
 #include "MethodInvocation.h"
 #include <iostream>
-#include <windows.h>
 
 LightOnCommand::LightOnCommand(Light* light)
 {
@@ -114,12 +113,26 @@ void MethodInvocation::RemoteLoaderTestFunc()
 	Hottub* hottub = new Hottub();
 	TVOnCommand* tvOn = new TVOnCommand(tv);
 	HottubOnCommand* hottubOn = new HottubOnCommand(hottub);
-	Command* partyOn[4] = { livingRoomLightOn,stereoOnWithCD,tvOn,hottubOn };
+	TVOffCommand* tvOff = new TVOffCommand(tv);
+	HottubOffCommand* hottubOff = new HottubOffCommand(hottub);
 
-	
-	MacroCommand* partyOnMacro = new MacroCommand(*partyOn, , 4);
+	Command* partyOn[] = { livingRoomLightOn,stereoOnWithCD,tvOn,hottubOn };
+	Command* partyOff[] = { livingRoomLightOff,stereoOff,tvOff,hottubOff };
+	MacroCommand* partyOnMacro = new MacroCommand(partyOn, sizeof(partyOn) / sizeof(Command*));
+	MacroCommand* partyOffMacro = new MacroCommand(partyOff, sizeof(partyOff) / sizeof(Command*));
 
+	remoteControl->setCommand(0, partyOnMacro, partyOffMacro);
+	std::cout << remoteControl->ToString() << "--- Pushing Macro On ---\n";
+	remoteControl->OnButtonWasPushed(0);
 
+	std::cout << "--- Pushing Undo ---\n";
+	remoteControl->undoButtonWasPushed();
+
+	std::cout << "--- Pushing Macro Off ---\n";
+	remoteControl->OffButtonWasPushed(0);
+
+	std::cout << "--- Pushing Undo ---\n";
+	remoteControl->undoButtonWasPushed();
 }
 
 Light::Light(std::string installplace)
@@ -413,6 +426,11 @@ void StereoOnWithCDCommand::execute()
 
 }
 
+void StereoOnWithCDCommand::undo()
+{
+	stereo->Off();
+}
+
 StereoOffCommand::StereoOffCommand(Stereo* stereo)
 {
 	Name = "Stereo Off";
@@ -422,6 +440,11 @@ StereoOffCommand::StereoOffCommand(Stereo* stereo)
 void StereoOffCommand::execute()
 {
 	stereo->Off();
+}
+
+void StereoOffCommand::undo()
+{
+	stereo->On();
 }
 
 RemoteControlWithUndo::RemoteControlWithUndo()
@@ -464,12 +487,18 @@ void MacroCommand::execute()
 		commands[i]->execute();
 }
 
-MacroCommand::MacroCommand(Command* commandsStart, Command* commandsEnd, int num)
+void MacroCommand::undo()
 {
+	for (int i = 0; i < commands.size(); i++)
+		commands[i]->undo();
+
+}
+
+MacroCommand::MacroCommand(Command** commands, size_t num)
+{
+	Name = "MacroCommand";
 	this->commands.resize(num);
-	this->commands.begin();
-	//memcpy(commands, this->commands[0], num * sizeof(Command));
-	//this->commands.assign(commandsStart, commandsEnd);
+	this->commands.assign(commands, commands + num);
 }
 
 TV::TV(std::string Installplace)
@@ -536,12 +565,52 @@ void TVOnCommand::execute()
 	tv->On();
 }
 
+void TVOnCommand::undo()
+{
+	tv->Off();
+}
+
+TVOffCommand::TVOffCommand(TV* tv)
+{
+	this->tv = tv;
+}
+
+void TVOffCommand::execute()
+{
+	tv->Off();
+}
+
+void TVOffCommand::undo()
+{
+	tv->On();
+}
+
 HottubOnCommand::HottubOnCommand(Hottub* hottub)
 {
 	this->hottub = hottub;
 }
 
 void HottubOnCommand::execute()
+{
+	hottub->On();
+}
+
+void HottubOnCommand::undo()
+{
+	hottub->Off();
+}
+
+HottubOffCommand::HottubOffCommand(Hottub* hottub)
+{
+	this->hottub = hottub;
+}
+
+void HottubOffCommand::execute()
+{
+	hottub->Off();
+}
+
+void HottubOffCommand::undo()
 {
 	hottub->On();
 }

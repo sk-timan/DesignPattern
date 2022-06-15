@@ -225,6 +225,7 @@ public:
 	StereoOnWithCDCommand(Stereo* stereo);
 
 	virtual void execute() override;
+	virtual void undo() override;
 
 private:
 	Stereo* stereo;
@@ -236,6 +237,7 @@ public:
 	StereoOffCommand(Stereo* stereo);
 
 	virtual void execute() override;
+	virtual void undo() override;
 
 private:
 	Stereo* stereo;
@@ -244,9 +246,12 @@ private:
 class MacroCommand : public Command
 {
 public:
-	MacroCommand(Command* commandsStart, Command* commandsEnd, int num);
+	MacroCommand(Command** commands, size_t num);
 
 	virtual void execute() override;
+
+	virtual void undo() override;
+
 private:
 	std::vector<Command*> commands;
 };
@@ -257,6 +262,19 @@ public:
 	TVOnCommand(TV* tv);
 
 	virtual void execute() override;
+	virtual void undo() override;
+
+private:
+	TV* tv;
+};
+
+class TVOffCommand : public Command
+{
+public:
+	TVOffCommand(TV* tv);
+
+	virtual void execute() override;
+	virtual void undo() override;
 
 private:
 	TV* tv;
@@ -268,7 +286,18 @@ public:
 	HottubOnCommand(Hottub* hottub);
 
 	virtual void execute() override;
+	virtual void undo() override;
+private:
+	Hottub* hottub;
+};
 
+class HottubOffCommand : public Command
+{
+public:
+	HottubOffCommand(Hottub* hottub);
+
+	virtual void execute() override;
+	virtual void undo() override;
 private:
 	Hottub* hottub;
 };
