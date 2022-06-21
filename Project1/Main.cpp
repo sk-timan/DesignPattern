@@ -7,6 +7,8 @@
 #include "AbstractFactory.h"
 #include "Singleton.h"
 #include "MethodInvocation.h"
+#include "Adapter.h"
+#include "Facade.h"
 #include <algorithm>
 
 namespace MoveAndForward
@@ -255,6 +257,8 @@ int main()
 	//ZTYThreadFuncTest();
 	//Singleton::SingletonMultithreadFunc();
 	//MethodInvocation::RemoteControlTestFunc();
-	MethodInvocation::RemoteLoaderTestFunc();
+	//MethodInvocation::RemoteLoaderTestFunc();
+	//Adapter::DuckTestDrive();
+	Facade::HomeTheaterTestDrive();
 }
 	

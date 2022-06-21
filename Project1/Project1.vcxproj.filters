@@ -26,6 +26,12 @@
     <ClCompile Include="MethodInvocation.cpp">
       <Filter>项目文件</Filter>
     </ClCompile>
+    <ClCompile Include="Adapter.cpp">
+      <Filter>项目文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Facade.cpp">
+      <Filter>项目文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StrategyPattern.h">
@@ -52,6 +58,12 @@
     <ClInclude Include="MethodInvocation.h">
       <Filter>头文件\命令模式</Filter>
     </ClInclude>
+    <ClInclude Include="Adapter.h">
+      <Filter>头文件\适配器模式</Filter>
+    </ClInclude>
+    <ClInclude Include="Facade.h">
+      <Filter>头文件\外观模式</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="头文件">
@@ -77,6 +89,12 @@
     </Filter>
     <Filter Include="头文件\命令模式">
       <UniqueIdentifier>{e19e8137-1a8b-4824-9031-37d48c950f87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\适配器模式">
+      <UniqueIdentifier>{205b4cd8-fbd1-4834-bc65-b77da29c719a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\外观模式">
+      <UniqueIdentifier>{531f94f7-09d8-45a4-9cdd-82fda1ca883e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
