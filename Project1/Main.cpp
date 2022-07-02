@@ -1,4 +1,5 @@
 #pragma once
+#include <algorithm>
 #include "StrategyPattern.h"
 #include "Observer.h"
 #include "Decorator.h"
@@ -9,18 +10,23 @@
 #include "MethodInvocation.h"
 #include "Adapter.h"
 #include "Facade.h"
-#include <algorithm>
+#include "Iterator.h"
+
 
 namespace MoveAndForward
 {
 	void foo(int& f)
 	{
+		int temp = f;
 		std::cout << "f is lvalue\n";
+		std::cout << "f's address:  " << &f << endl;
 	}
 	
 	void foo(int&& f)
 	{
+		int temp = f;
 		std::cout << "f is rvalue\n";
+		std::cout << "f's address:  " << &f << endl;
 	}
 	
 	//template<class T>
@@ -34,6 +40,7 @@ namespace MoveAndForward
 	void deduce(T&& agr)
 	{
 		//foo(agr);
+		std::cout << "agr's address: " << &agr << endl;
 		foo(std::forward<T>(agr));
 		//foo(static_cast<T&&>(agr));
 		//foo(std::move(agr));
@@ -47,14 +54,22 @@ namespace MoveAndForward
 		int p = std::move(3);
 		int&& k = 6;
 	
+		std::cout << "i's address: " << &i << endl;
 		deduce(i);
+		std::cout << "b's address: " << &b << endl;
 		deduce(1);
+		std::cout << "j's address: " << &j << endl;
 		deduce(j);
+		//std::cout << "move(1)'s address: " << move(1) << endl;
 		deduce(std::move(1));
+		std::cout << "i's address: " << &i << endl;
 		deduce(std::move(i));
+
 		deduce(std::move(j));
 	
-	
+		deduce(p);
+
+		deduce(std::move(k));
 		//foo(i);
 		//foo(j);
 	
@@ -218,25 +233,54 @@ namespace PassByRefTest
 	void pass_by_value(int* p)
 	{
 		//Allocate memory for int and store the address in p
+		cout << &p << endl;
 		p = new int;
-		
+		cout << &p << endl;
 	}
 
 	void pass_by_reference(int*& p)
 	{
+		cout << &p << endl;
 		p = new int;
+		cout << &p << endl;
+	}
+
+	void pass_by_Val(int p)
+	{
+		cout << &p << endl;
+		p = *new int(254);
+		cout << &p << endl;
+	}
+
+	void pass_by_Ref(int& p)
+	{
+		cout << &p << endl;
+		p = *new int(259);
+		cout << &p << endl;
 	}
 
 	int PassByRefTestFun()
 	{
 		int* p1 = NULL;
 		int* p2 = NULL;
+		int p3 = 0;
+		int p4 = 1;
+		//cout << &p1 << endl;
+		//cout << &p2 << endl;
+		cout << &p3 << endl;
+		cout << &p4 << endl;
+
 
 		pass_by_value(p1); //p1 will still be NULL after this call
 		pass_by_reference(p2); //p2 's value is changed to point to the newly allocate memory
+		pass_by_Val(p3);
+		pass_by_Ref(p4);
 
 		cout << "p1's address = " << p1 << endl;
 		cout << "p2's address = " << p2 << endl;
+		cout << "p3's val = " << p3 << endl;
+		cout << "p4's val = " << p4 << endl;
+
 		return 0;
 	}
 }
@@ -249,7 +293,7 @@ int main()
 	//SimpleFactory::SimpleFactoryDisplay();
 	//Factory::FactoryDisplay();
 	//AbstractFactory::AbstractFactoryDisplay();
-	//MoveAndForward::MoveSemanticsAndPerfectForwarding();
+	MoveAndForward::MoveSemanticsAndPerfectForwarding();
 	//SharedPointerTest::SharedPointerTestSong();
 	//SharedPointerTest::SharedPointerTestPhoto();
 	//WeakPointerTest::WeakPointerTestFun();
@@ -259,6 +303,8 @@ int main()
 	//MethodInvocation::RemoteControlTestFunc();
 	//MethodInvocation::RemoteLoaderTestFunc();
 	//Adapter::DuckTestDrive();
-	Facade::HomeTheaterTestDrive();
+	//Facade::HomeTheaterTestDrive();
+	//Iterator::IteratorTestFunc();
+
 }
 	

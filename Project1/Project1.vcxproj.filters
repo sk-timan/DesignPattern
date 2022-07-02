@@ -32,6 +32,9 @@
     <ClCompile Include="Facade.cpp">
       <Filter>项目文件</Filter>
     </ClCompile>
+    <ClCompile Include="Iterator.cpp">
+      <Filter>项目文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StrategyPattern.h">
@@ -64,6 +67,9 @@
     <ClInclude Include="Facade.h">
       <Filter>头文件\外观模式</Filter>
     </ClInclude>
+    <ClInclude Include="Iterator.h">
+      <Filter>头文件\迭代器与组合模式</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="头文件">
@@ -95,6 +101,9 @@
     </Filter>
     <Filter Include="头文件\外观模式">
       <UniqueIdentifier>{531f94f7-09d8-45a4-9cdd-82fda1ca883e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\迭代器与组合模式">
+      <UniqueIdentifier>{93fc425f-e9e4-4d05-b1e8-4991da390fc9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
