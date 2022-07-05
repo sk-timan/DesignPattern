@@ -35,6 +35,9 @@
     <ClCompile Include="Iterator.cpp">
       <Filter>项目文件</Filter>
     </ClCompile>
+    <ClCompile Include="Composite.cpp">
+      <Filter>项目文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StrategyPattern.h">
@@ -68,6 +71,9 @@
       <Filter>头文件\外观模式</Filter>
     </ClInclude>
     <ClInclude Include="Iterator.h">
+      <Filter>头文件\迭代器与组合模式</Filter>
+    </ClInclude>
+    <ClInclude Include="Composite.h">
       <Filter>头文件\迭代器与组合模式</Filter>
     </ClInclude>
   </ItemGroup>

@@ -182,7 +182,7 @@ void* PancakeHouseMenuIterator::next()
 	return menuItem;
 }
 
-Waitress::Waitress(vector<IMenu*>&& menus)
+Waitress::Waitress(vector<IMenu*>& menus)
 {
 	/*this->pancakeHouseMenu = pancakeHouseMenu;
 	this->dinerMenu = dinerMenu;
@@ -231,13 +231,16 @@ void Iterator::IteratorTestFunc()
 	DinerMenu* dinerMenu = new DinerMenu();
 	CafeMenu* cafeMenu = new CafeMenu();
 	vector<IMenu*> menus = { pancakeHouseMenu,dinerMenu,cafeMenu };
-	Waitress* waitress = new Waitress(move(menus));
+	/*vector<IMenu*> menus2 = move(menus);
+	Waitress* waitress = new Waitress(move(menus2));
 	string a = "abc";
 	string b = move(a);
 
 	int* A = new int ;
 	vector<int*> integer = { A,new int(2),new int(3) };
-	vector<int*> intergerteam = move(integer);
+	vector<int*> intergerteam = move(integer);*/
+
+	Waitress* waitress = new Waitress(menus);
 
 	waitress->printMenu();
 }

@@ -293,7 +293,7 @@ int main()
 	//SimpleFactory::SimpleFactoryDisplay();
 	//Factory::FactoryDisplay();
 	//AbstractFactory::AbstractFactoryDisplay();
-	MoveAndForward::MoveSemanticsAndPerfectForwarding();
+	//MoveAndForward::MoveSemanticsAndPerfectForwarding();
 	//SharedPointerTest::SharedPointerTestSong();
 	//SharedPointerTest::SharedPointerTestPhoto();
 	//WeakPointerTest::WeakPointerTestFun();
@@ -304,7 +304,7 @@ int main()
 	//MethodInvocation::RemoteLoaderTestFunc();
 	//Adapter::DuckTestDrive();
 	//Facade::HomeTheaterTestDrive();
-	//Iterator::IteratorTestFunc();
+	Iterator::IteratorTestFunc();
 
 }
 	

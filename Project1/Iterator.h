@@ -158,7 +158,7 @@ private:
 class Waitress
 {
 public:
-	Waitress(vector<IMenu*>&& menus);
+	Waitress(vector<IMenu*>& menus);
 
 public:
 	void printMenu();
