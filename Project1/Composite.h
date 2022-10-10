@@ -54,10 +54,10 @@ public:
 public:
 	virtual void add(IMenuComponent* menuComponent) override;
 	virtual void remove(IMenuComponent* menuComponent) override;
-	virtual MenuItemComponent* getChild(int i) override;
-	virtual string getName() override;
-	virtual string getDescription() override;
-	virtual void print() override;
+	//virtual MenuItemComponent* getChild(int i) override;
+	//virtual string getName() override;
+	//virtual string getDescription() override;
+	//virtual void print() override;
 
 private:
 	vector<IMenuComponent*> menuComponents;
@@ -65,8 +65,8 @@ private:
 	string description;
 };
 
-class Composite
-{
-
-};
+//class Composite
+//{
+//
+//};
 

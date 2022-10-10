@@ -57,5 +57,5 @@ void Menu::add(IMenuComponent* menuComponent)
 
 void Menu::remove(IMenuComponent* menuComponent)
 {
-	menuComponents.
+	//menuComponents.
 }
